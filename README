@@ -1,17 +1,17 @@
-# wh_test_kernel
-Linux Kernel module tests
+README		Notes on kernel modules
+WWH
+5/20/2013
 
 Summary:
 ========
 
-These are examples of progamming Linux kernel modules.  The
-original versions were based on the The Linux Kernel Module 
+This is based on the The Linux Kernel Module 
 Programming Guide from the Linux Doc Project (TLDP).
 
 History:
 ========
 
-N/A (created 5/20/2013)
+N/A
 
 Notes:
 ======
@@ -23,5 +23,3 @@ Notes:
 2)  Without listing the module as GPL, it will be "tainted"
     which is set and can only be reset on reboot:
        cat /proc/sys/kernel/tainted
-
-3)  These will be expanded over time....

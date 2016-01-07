@@ -1,21 +1,21 @@
 /**
- * Module:   proc_fs
- * Purpose:  create a "file" in /proc, based on procfs2.c
- * Author:   Wade Hampton (based on examples)
- * Date:     N/A
+ * Module:   proc_fs-old
+ * Purpose:  Linux kernel 2.6 proc interface (not for 3 or later)
+ * Author:   Wade Hampton
+ * Date:     2013
  * Notes:
- * 1)  Create a file in /proc with WH changes:
+ * 1) This is based on procfs2.c, creates a "file" in /proc
+ *  - WH changes:  
  *    -- no owner in proc_dir_entry
  *    -- used NULL for "parent" per TUXTHINK link, others fail
- *     
- * 2)  Notes: *    -- Ubuntu kernel headers in dirs like:  
+ * 2) Notes:  
+ *    -- Ubuntu kernel headers in dirs like:  
  *         /usr/src/linux-headers-3.2.0-43/include/linux
- * 
- * 3)  Ref:  See README.md
+ * 3) Links:
  *      http://tldp.org/LDP/lkmpg/2.6/html/x769.html#AEN806
  *      http://tuxthink.blogspot.com/2011/02/creating-readwrite-proc-entry.html
  *      http://www.ibm.com/developerworks/linux/library/l-proc/index.html
- *     
+ *
  */
 
 #include <linux/module.h>	/* Specifically, a module */

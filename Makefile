@@ -19,7 +19,9 @@
 obj-m += test1.o
 obj-m += hello-2.o
 obj-m += hello-3.o
-# obj-m += proc_fs.o
+# proc_fs-old uses old, 2.6.x API
+#obj-m += proc_fs-old.o
+obj-m += proc_new.o
 # obj-m += jiffies.o
 # obj-m += kthread.o
 # obj-m += kthread2.o

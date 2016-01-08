@@ -11,6 +11,36 @@
  *       - replaced create_proc_entry() with proc_create()
  *       - additional printk statements on module load/unload
  *       - macro to define module name
+ * 3)  Typical run (cat /var/log/messages or /var/log/syslog (ubuntu))
+ *            [snip] Entering start(), pos = 0.
+ *            [snip] In start(), even_ptr = e7f00668.
+ *            [snip] In show(), even = 0.
+ *            [snip] In next(), v = e7f00668, pos = 0.
+ *            [snip] In show(), even = 2.
+ *            [snip] In next(), v = e7f00668, pos = 1.
+ *            [snip] In show(), even = 4.
+ *            [snip] In next(), v = e7f00668, pos = 2.
+ *            [snip] In show(), even = 6.
+ *            [snip] In next(), v = e7f00668, pos = 3.
+ *            [snip] In show(), even = 8.
+ *            [snip] In next(), v = e7f00668, pos = 4.
+ *            [snip] Entering stop().
+ *            [snip] v is null.
+ *            [snip] In stop(), even_ptr = e7f00668.
+ *            [snip] Freeing and clearing even_ptr.
+ *            [snip] Entering start(), pos = 5.
+ *            [snip] Apparently, we're done.
+ *            [snip] Entering stop().
+ *            [snip] v is null.
+ *            [snip] In stop(), even_ptr =   (null).
+ *            [snip] even_ptr is already null.
+ *
+ *     Note that even when next() returns NULL and stop() is called,
+ *     start() is called again to make sure there is nothing else to 
+ *     output.  This boundary condition MUST be handled gracefully
+ *     for example the start() check for >= limit and the stop()
+ *     check for the null pointer.  Code must be setup to support
+ *     being called multiple times!  See the linked article.
  */
 
 #include <linux/module.h>
@@ -86,6 +116,8 @@ ct_seq_next(struct seq_file *s, void *v, loff_t *pos)
 } 
 
 /** stop function for the sequence, cleanup */
+
+
 static void
 ct_seq_stop(struct seq_file *s, void *v)
 {

@@ -20,6 +20,7 @@
 #include <linux/seq_file.h>	// for sequence files
 #include <linux/jiffies.h>	// for jiffies
 
+/* proc directory entry for this module */
 static struct proc_dir_entry* jif_file;
 
 

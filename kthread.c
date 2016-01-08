@@ -8,7 +8,8 @@
  * 2)  Ref:  
  *      http://lwn.net/Articles/65178/
  *      https://www.kernel.org/doc/htmldocs/device-drivers/API-wake-up-process.html
- *     
+ * 3)  This uses the old /proc interface which is deprecated and removed
+ *     in later kernels.  See newer example using different interface.    
  */
 
 #include <linux/module.h>	/* Specifically, a module */

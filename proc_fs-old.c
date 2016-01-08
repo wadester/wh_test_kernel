@@ -1,6 +1,6 @@
 /**
  * Module:   proc_fs-old
- * Purpose:  Linux kernel 2.6 proc interface (not for 3 or later)
+ * Purpose:  Linux kernel 2.6 proc interface (DEPRECATED)
  * Author:   Wade Hampton
  * Date:     2013
  * Notes:
@@ -15,7 +15,11 @@
  *      http://tldp.org/LDP/lkmpg/2.6/html/x769.html#AEN806
  *      http://tuxthink.blogspot.com/2011/02/creating-readwrite-proc-entry.html
  *      http://www.ibm.com/developerworks/linux/library/l-proc/index.html
- *
+ * 4) This uses the deprecated /proc interface used by 2.x kernels
+ *    and it has now been removed with the latest kernels.  Use the
+ *    new create_proc() function for CentOS 5 and later 2.6.18 and later.
+ * 6) This was used by WH some special modules developed circa-2000 
+ *    for a commercial customer.
  */
 
 #include <linux/module.h>	/* Specifically, a module */

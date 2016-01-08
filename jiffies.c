@@ -1,7 +1,7 @@
 /**
  * Module:   display jiffies in "file" in /proc
  * Purpose:  
- * Author:   Wade Hampton (based on examples)
+ * Author:   Wade Hampton (based on examples) (DEPRECATED)
  * Date:     N/A
  * Notes:
  * 1)  This creates a "file" in /proc and displays jiffies.  It is 
@@ -17,6 +17,8 @@
  *      http://tuxthink.blogspot.com/2011/02/creating-readwrite-proc-entry.html
  *      http://www.ibm.com/developerworks/linux/library/l-proc/index.html
  *      http://www.gnugeneration.com/books/linux/2.6.20/procfs-guide/ch05.html
+ * 4) This uses the deprecated /proc interface which was removed in
+ *    3.x kernels.  Use the newer interface.  
  *     
  */
 

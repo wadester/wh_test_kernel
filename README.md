@@ -24,4 +24,30 @@ Notes:
     which is set and can only be reset on reboot:
        cat /proc/sys/kernel/tainted
 
-3)  These will be expanded over time....
+3)  The 
+
+
+These will be expanded over time....
+
+
+Files:
+======
+
+  test1        very simple kernel module (taints kernel)
+  hello-2      demonstrate module_init(), module_exit() macros
+  hello-3      hello-2 plus license, author, description
+  proc_fs-old  /proc example, Linux 2.6 and earlier
+  proc_new     /proc example with jiffies using new /proc interface
+               Linux 2.6.18 and later (CentOS 5 suppoorted)
+  jiffies      /proc example with jiffies, deprecated /proc interface
+  kthread      sample kernel thread, uses old /proc (deprecated)
+  kthread2     expanded kernel thread, uses old /proc (deprecated)
+  kthread3     expanded kernel thread, new /proc interface
+
+Notes:
+======
+
+*  CentOS 5-7:  src is in /usr/src/kernels/`uname -r`
+
+*  Ubuntu 14:  src is in /usr/src/linux-headers-`uname -r`
+

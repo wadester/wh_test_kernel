@@ -1,3 +1,18 @@
+/**
+ * Module:   crash_evens
+ * Purpose:  to demonstrate more elaborate use of seq_file
+ * Author:   ?
+ * Date:     ?
+ * Notes:
+ * 1)  Based on:
+ *       http://www.crashcourse.ca/sites/default/files/crash_evens.c
+ * 2)  WH changes:
+ *       - documentation added including header and these notes
+ *       - replaced create_proc_entry() with proc_create()
+ *       - additional printk statements on module load/unload
+ *       - macro to define module name
+ */
+
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/init.h>
@@ -7,11 +22,17 @@
 #include <linux/seq_file.h>
 #include <linux/slab.h>      // for kmalloc() dynamic allocation
 
+/** define name of proc file system */
+#define PROCFS_NAME  "evens"
+
+/** module parameter "limit=n", default=10, number of even values to display */
 static int limit = 10;
 module_param(limit, int, S_IRUGO);
 
+/** even value, kmalloc'ed data */
 static int* even_ptr;
 
+/** start method for the sequence file */
 static void *
 ct_seq_start(struct seq_file *s, loff_t *pos)
 {
@@ -34,6 +55,9 @@ ct_seq_start(struct seq_file *s, loff_t *pos)
     return even_ptr;
 } 
 
+/** actually display the value -- this is the output function 
+ *  limit is 1 page of data, typ 4096 bytes
+ */
 static int
 ct_seq_show(struct seq_file *s, void *v)
 {
@@ -43,6 +67,7 @@ ct_seq_show(struct seq_file *s, void *v)
     return 0;
 }
 
+/** next function for the sequence */
 static void *
 ct_seq_next(struct seq_file *s, void *v, loff_t *pos)
 {
@@ -60,6 +85,7 @@ ct_seq_next(struct seq_file *s, void *v, loff_t *pos)
     return v;
 } 
 
+/** stop function for the sequence, cleanup */
 static void
 ct_seq_stop(struct seq_file *s, void *v)
 {
@@ -82,6 +108,9 @@ ct_seq_stop(struct seq_file *s, void *v)
     }
 } 
 
+/** sequence operations
+ *  note these were not required for the simple examples 
+ */
 static struct seq_operations ct_seq_ops = {
     .start = ct_seq_start,
     .next  = ct_seq_next,
@@ -89,6 +118,7 @@ static struct seq_operations ct_seq_ops = {
     .show  = ct_seq_show
 };
 
+/** open file creating the sequence with options */
 static int
 ct_open(struct inode *inode, struct file *file)
 {
@@ -103,26 +133,37 @@ static struct file_operations ct_file_ops = {
     .release = seq_release
 };
 
+/** module init, create the proc entry */
 static int
 ct_init(void)
 {
     struct proc_dir_entry *entry;
 
-    entry = create_proc_entry("evens", 0, NULL);
+    /* entry = create_proc_entry("evens", 0, NULL); */
+    entry = proc_create(PROCFS_NAME, 0, NULL, &ct_file_ops);
 
-    if (entry)
-        entry->proc_fops = &ct_file_ops;
+    /* if (entry) */
+    /*     entry->proc_fops = &ct_file_ops; */
+    if (entry == NULL) {
+	printk(KERN_INFO "crash_evens:  failed to load module\n");
+	return -ENOMEM;
+    }
 
+    printk(KERN_INFO "crash_evens:  module created\n");
     return 0;
 }
 
+/** module cleanup */
 static void
 ct_exit(void)
 {
-    remove_proc_entry("evens", NULL);
+    remove_proc_entry(PROCFS_NAME, NULL);
+    printk(KERN_INFO "crash_evens:  module removed\n");
 }
 
+/** module macros for init/exit and license */
 module_init(ct_init);
 module_exit(ct_exit);
 
 MODULE_LICENSE("GPL"); 
+

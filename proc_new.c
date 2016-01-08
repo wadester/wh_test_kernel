@@ -6,8 +6,21 @@
  * Notes:
  * 1)  This uses the new Linux 3.x proc API and a "sequence file"
  * 2)  Ref:  
+ *       http://lwn.net/Kernel/LDD3/   Linux Device Drivers e-book
  *       https://www.linux.com/learn/linux-training/37985-the-kernel-newbie-corner-kernel-debugging-using-proc-qsequenceq-files-part-1
  *       http://kernelnewbies.org/Documents/SeqFileHowTo
+ * 
+ *       From the kernelnewbies article:  "The "seq_file" interface to the /proc filesystem 
+ *       was introduced in Linux 2.4.15-pre3 and Linux 2.4.13-ac8...".  It is 
+ *       in CentOS 5 and later, recent Fedora, and recent Ubuntu.  
+ *
+ *       See:  https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=80e928f7ebb958f4d79d4099d1c5c0a015a23b93
+ *
+ *       The 3.x Linux kernel removed the old create_proc_entry(PROCFS_NAME, 0644, NULL);
+ *       function and method in deference to using proc_create(...) and 
+ *       typically "seq_file".  Note that my very old code used the
+ *       old method (circa 2000).
+ *      
  */
 
 /************************************************************************/

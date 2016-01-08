@@ -21,8 +21,7 @@
 #       kthread      sample kernel thread, uses old /proc (deprecated)
 #       kthread2     expanded kernel thread, uses old /proc (deprecated)
 #       kthread3     expanded kernel thread, new /proc interface
-
-
+#       crash_evens  expanded seq_file example with proc data
 
 obj-m += test1.o
 obj-m += hello-2.o
@@ -37,6 +36,7 @@ obj-m += hello-3.o
 
 obj-m += proc_new.o
 obj-m += kthread3.o
+obj-m += crash_evens.o
 
 
 all:

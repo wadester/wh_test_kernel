@@ -1,38 +1,45 @@
-# wh_test_kernel
-Linux Kernel module tests
+Linux Kernel Module Tests
+=========================
+Wade Hampton <wadehamptoniv@gmail.com>
+x.x, 4/6/2016: Update, moved to AsciiDoc
 
 Summary:
-========
+--------
 
-These are examples of progamming Linux kernel modules.  The
-original versions were based on the The Linux Kernel Module 
-Programming Guide from the Linux Doc Project (TLDP).
+The programs in this repository are examples of progamming 
+Linux kernel modules.  The original versions were based on 
+the The Linux Kernel Module Programming Guide from the 
+Linux Doc Project (TLDP).  
 
 History:
-========
+--------
 
-N/A (created 5/20/2013)
+  N/A (created 5/20/2013 some based on much earlier examples)
 
 Notes:
-======
+------
 
-1)  Links:
-*   TLDP: http://www.tldp.org/LDP/lkmpg/2.6/html/
-*   Module: https://en.wikipedia.org/wiki/Loadable_kernel_module
+1.  Linux Doc Project (TLDP): http://www.tldp.org/LDP/lkmpg/2.6/html/
 
-2)  Without listing the module as GPL, your kernel will be "tainted"
+2.  Module Info:  https://en.wikipedia.org/wiki/Loadable_kernel_module
+
+3.  Without listingM the module as GPL, your kernel will be "tainted"
     which once set can only be reset on reboot:
 
        cat /proc/sys/kernel/tainted
 
-3)  This contains modules with the older /proc interface and the 
+4.  The Makefile uses the kernel build system which gives a 
+    very simple syntax.  Kernel build packages MUST be installed.
+    Manual package build is not supported by the Makefile.
+
+5.  This contains modules with the older /proc interface and the 
     newer one.  
 
-4)  These will be expanded over time....
+6.  These will be expanded over time....
 
 
 Files:
-======
+------
 
   test1        very simple kernel module (taints kernel)
   hello-2      demonstrate module_init(), module_exit() macros
@@ -47,7 +54,7 @@ Files:
   crash_evens  expanded seq_file example with proc data
 
 Notes:
-======
+------
 
 *  CentOS 5-7:  src is in /usr/src/kernels/`uname -r`
 

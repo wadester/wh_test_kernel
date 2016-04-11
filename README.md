@@ -35,7 +35,10 @@ Notes:
 5.  This contains modules with the older /proc interface and the 
     newer one.  
 
-6.  These will be expanded over time....
+5.  This may be expanded to include some examples of  dynamic kernel 
+    module support (DKMS).
+
+6.  These notes will be expanded over time....
 
 
 Files:
@@ -71,3 +74,7 @@ Notes:
      obj-m += abc.o
      make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
+*  DKMS: link:http://xmodulo.com/build-kernel-module-dkms-linux.html[]
+
+
+     

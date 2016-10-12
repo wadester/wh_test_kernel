@@ -1,12 +1,12 @@
 Linux Kernel Module Tests
 =========================
 Wade Hampton <wadehamptoniv@gmail.com>
-x.x, 4/6/2016: Update, moved to AsciiDoc
+x.x, 4/27/2016: Updated, added new example
 
 Summary:
 --------
 
-The programs in this repository are examples of progamming 
+The programs in this repository are examples of programming 
 Linux kernel modules.  The original versions were based on 
 the The Linux Kernel Module Programming Guide from the 
 Linux Doc Project (TLDP).  
@@ -21,9 +21,9 @@ Notes:
 
 1.  Linux Doc Project (TLDP): http://www.tldp.org/LDP/lkmpg/2.6/html/
 
-2.  Module Info:  https://en.wikipedia.org/wiki/Loadable_kernel_module
+2.  Module Info:  link:https://en.wikipedia.org/wiki/Loadable_kernel_module[]
 
-3.  Without listingM the module as GPL, your kernel will be "tainted"
+3.  Without listing the module as GPL, your kernel will be "tainted"
     which once set can only be reset on reboot:
 
        cat /proc/sys/kernel/tainted
@@ -49,7 +49,7 @@ Files:
   hello-3      hello-2 plus license, author, description
   proc_fs-old  /proc example, Linux 2.6 and earlier
   proc_new     /proc example with jiffies using new /proc interface
-               Linux 2.6.18 and later (CentOS 5 suppoorted)
+               Linux 2.6.18 and later (CentOS 5 supported)
   jiffies      /proc example with jiffies, deprecated /proc interface
   kthread      sample kernel thread, uses old /proc (deprecated)
   kthread2     expanded kernel thread, uses old /proc (deprecated)
